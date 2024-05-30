@@ -56,4 +56,22 @@ dedup_queue_count 0
 # TYPE dedup_process_count gauge
 dedup_process_count{process="fsdmhost"} 0
 ```
-You can use various tools to compile an exe from a ps1 file or simply run the script.
+
+### Running as a service
+Running a powershell script as a windows service is possible by using NSSM.
+
+Use the snippet below to install it as a service:
+```
+$serviceName = 'DedupExporter'
+$nssm = "c:\path\to\nssm.exe"
+$powershell = (Get-Command powershell).Source
+$scriptPath = 'c:\program files\your_exporter\dedup.ps1'
+$arguments = '-ExecutionPolicy Bypass -NoProfile -File """{0}"""' -f $scriptPath
+
+& $nssm install $serviceName $powershell $arguments
+Start-Service $serviceName
+
+# Substitute the port below with the one you picked for your exporter
+New-NetFirewallRule -DisplayName "My Exporter" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9700
+```
+Or you can use various tools to compile an exe from ps1 file
