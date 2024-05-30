@@ -74,4 +74,4 @@ Start-Service $serviceName
 # Substitute the port below with the one you picked for your exporter
 New-NetFirewallRule -DisplayName "My Exporter" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9700
 ```
-Or you can use various tools to compile an exe from ps1 file
+Or you can use various tools to compile an exe from ps1 file like `ps2exe`
