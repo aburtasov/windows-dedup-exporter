@@ -16,3 +16,6 @@ This repository contains a Prometheus Exporter for gathering deduplication metri
    * `dedup_saved_space_count`: Amount of space saved by deduplication by volume
    * `dedup_optimized_files_count`: Number of optimized files by volume
    * `dedup_inpolicy_files_count`: Number of in-policy files by volume
+
+### Usage
+You can use various tools to compile an exe from a ps1 file or simply run the script.
