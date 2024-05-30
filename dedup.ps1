@@ -1,5 +1,3 @@
-$ErrorActionPreference = "Stop"
-
 # Installing and importing the PrometheusExporter module
 Install-Module -Name PrometheusExporter -Force
 Import-Module -Name PrometheusExporter
@@ -14,7 +12,7 @@ $DedupInpolicyFiles = New-MetricDescriptor -Name "dedup_inpolicy_files_count" -T
 
 function collector {
     # Retrieving deduplication status information
-    $DedupJobs = Get-DedupJob -Type Optimization
+    $DedupJobs = Get-DedupJob
     $QueueCount = (($DedupJobs).Type).Count
 
     $DedupVolume = Get-DedupVolume
