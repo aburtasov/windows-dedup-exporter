@@ -18,4 +18,44 @@ This repository contains a Prometheus Exporter for gathering deduplication metri
    * `dedup_inpolicy_files_count`: Number of in-policy files by volume
 
 ### Usage
+1. Clone the repository
+2. Run the script:
+```
+.\dedup.ps1
+
+```
+If you now open http://localhost:9700 in your browser, you will see the metrics displayed.
+```
+# HELP dedup_progress_count Current progress of dedup jobs
+# TYPE dedup_progress_count gauge
+dedup_progress_count{volume="E:"} 0
+# HELP dedup_saved_space_count Count of saved space
+# TYPE dedup_saved_space_count gauge
+dedup_saved_space_count{volume="E:"} 0
+# HELP dedup_optimized_files_count Count of optimized files
+# TYPE dedup_optimized_files_count gauge
+dedup_optimized_files_count{volume="E:"} 0
+# HELP dedup_inpolicy_files_count Count of in-policy files
+# TYPE dedup_inpolicy_files_count gauge
+dedup_inpolicy_files_count{volume="E:"} 0
+# HELP dedup_progress_count Current progress of dedup jobs
+# TYPE dedup_progress_count gauge
+dedup_progress_count{volume="F:"} 0
+# HELP dedup_saved_space_count Count of saved space
+# TYPE dedup_saved_space_count gauge
+dedup_saved_space_count{volume="F:"} 9.470072E+08
+# HELP dedup_optimized_files_count Count of optimized files
+# TYPE dedup_optimized_files_count gauge
+dedup_optimized_files_count{volume="F:"} 20
+# HELP dedup_inpolicy_files_count Count of in-policy files
+# TYPE dedup_inpolicy_files_count gauge
+dedup_inpolicy_files_count{volume="F:"} 20
+# HELP dedup_queue_count Total current dedup tasks
+# TYPE dedup_queue_count gauge
+dedup_queue_count 0
+# HELP dedup_process_count Total current dedup processes
+# TYPE dedup_process_count gauge
+dedup_process_count{process="fsdmhost"} 0
+
+```
 You can use various tools to compile an exe from a ps1 file or simply run the script.
