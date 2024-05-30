@@ -3,10 +3,10 @@ This repository contains a Prometheus Exporter for gathering deduplication metri
 
 ### Features
 
-    * Collects deduplication job metrics from Windows servers
-    * Provides information on deduplication queue length, progress, saved space, optimized files, and in-policy files
-    * Counts the number of active fsdmhost.exe processes
-    * Exposes metrics via a Prometheus-compatible endpoint
+* Collects deduplication job metrics from Windows servers
+* Provides information on deduplication queue length, progress, saved space, optimized files, and in-policy files
+* Counts the number of active fsdmhost.exe processes
+* Exposes metrics via a Prometheus-compatible endpoint
 
 ### Metrics Collected
 
