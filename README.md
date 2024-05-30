@@ -22,7 +22,6 @@ This repository contains a Prometheus Exporter for gathering deduplication metri
 2. Run the script:
 ```
 .\dedup.ps1
-
 ```
 If you now open http://localhost:9700 in your browser, you will see the metrics displayed.
 ```
@@ -56,6 +55,5 @@ dedup_queue_count 0
 # HELP dedup_process_count Total current dedup processes
 # TYPE dedup_process_count gauge
 dedup_process_count{process="fsdmhost"} 0
-
 ```
 You can use various tools to compile an exe from a ps1 file or simply run the script.
