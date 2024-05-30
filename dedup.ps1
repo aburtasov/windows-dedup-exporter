@@ -1,10 +1,10 @@
 $ErrorActionPreference = "Stop"
 
-# Установка и импорт модуля PrometheusExporter
+# Installing and importing the PrometheusExporter module
 Install-Module -Name PrometheusExporter -Force
 Import-Module -Name PrometheusExporter
 
-# Определение метрик
+# Defining metrics
 $DedupQueue = New-MetricDescriptor -Name "dedup_queue_count" -Type gauge -Help "Total current dedup tasks"
 $DedupProcess = New-MetricDescriptor -Name "dedup_process_count" -Type gauge -Help "Total current dedup processes" -Labels "process"
 $DedupProgress = New-MetricDescriptor -Name "dedup_progress_count" -Type gauge -Help "Current progress of dedup jobs" -Labels "volume"
@@ -13,7 +13,7 @@ $DedupOptimizedFiles = New-MetricDescriptor -Name "dedup_optimized_files_count" 
 $DedupInpolicyFiles = New-MetricDescriptor -Name "dedup_inpolicy_files_count" -Type gauge -Help "Count of in-policy files" -Labels "volume"
 
 function collector {
-    # Получение информации о состоянии дедупликации
+    # Retrieving deduplication status information
     $DedupJobs = Get-DedupJob -Type Optimization
     $QueueCount = (($DedupJobs).Type).Count
 
@@ -37,14 +37,14 @@ function collector {
 
     $Metrics += New-Metric -MetricDesc $DedupQueue -Value $QueueCount
 
-    # Подсчет количества процессов с именем fsdmhost.exe
+    # Counting the number of processes named fsdmhost.exe
     $ProcessCount = (Get-Process -Name "fsdmhost" -ErrorAction SilentlyContinue).Count
     $Metrics += New-Metric -MetricDesc $DedupProcess -Value $ProcessCount -Labels "fsdmhost"
 
     return $Metrics
 }
 
-# Запуск Prometheus Exporter
+# Starting Prometheus Exporter
 $exp = New-PrometheusExporter -Port 9700
 Register-Collector -Exporter $exp -Collector $Function:collector
 $exp.Start()
