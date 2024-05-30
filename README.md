@@ -74,4 +74,9 @@ Start-Service $serviceName
 # Substitute the port below with the one you picked for your exporter
 New-NetFirewallRule -DisplayName "My Exporter" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9700
 ```
-Or you can use various tools(like `ps2exe`) to compile an exe from ps1 file 
+### Compile an exe-file from ps1-file
+Or you can use various tools(like `ps2exe`) to compile an exe from ps1 file:
+1. Open PowerShell with Administration Right
+2. Execute:  `Install-Module -Name ps2exe -Scope CurrentUser`
+3. Move to directory with the script: `cd path\to\script\dedup.ps1`
+4. Execute command: `ps2exe.ps1 -inputFile dedup.ps1 -outputFile dedup.exe`
